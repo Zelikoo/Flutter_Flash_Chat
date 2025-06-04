@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';
@@ -9,8 +10,8 @@ class WelcomeScreen extends StatefulWidget {
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin{
-
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation animation;
 
@@ -22,13 +23,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
       duration: Duration(seconds: 1),
       vsync: this,
     );
-    animation = ColorTween(begin: Colors.blueGrey, end: Colors.white).animate(controller);
+    animation = ColorTween(
+      begin: Colors.blueGrey,
+      end: Colors.white,
+    ).animate(controller);
     controller.forward();
 
     controller.addListener(() {
       setState(() {});
       print(animation.value);
-    },);
+    });
   }
 
   @override
@@ -57,18 +61,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                     child: Image.asset('images/logo.png'),
                   ),
                 ),
-                Text(
-                  'Flash Chat',
-                  style: TextStyle(
+                TypewriterAnimatedTextKit(
+                  textStyle: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
                   ),
+                  text: ['Flash Chat'],
+                  speed: Duration(milliseconds: 200),
                 ),
               ],
             ),
-            SizedBox(
-              height: 48.0,
-            ),
+            SizedBox(height: 48.0),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Material(
@@ -81,9 +84,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                   },
                   minWidth: 200.0,
                   height: 42.0,
-                  child: Text(
-                    'Log In',
-                  ),
+                  child: Text('Log In'),
                 ),
               ),
             ),
@@ -99,9 +100,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                   },
                   minWidth: 200.0,
                   height: 42.0,
-                  child: Text(
-                    'Register',
-                  ),
+                  child: Text('Register'),
                 ),
               ),
             ),
