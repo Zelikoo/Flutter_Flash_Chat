@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.flashchat"
-    compileSdk = 34 // ou la version que tu utilises déjà
+    compileSdk = 36 // ou la version que tu utilises déjà
     ndkVersion = "27.0.12077973"
 
     compileOptions {
