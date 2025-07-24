@@ -30,11 +30,13 @@ class RegistrationScreenState extends State<RegistrationScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Hero(
-                tag: 'logo',
-                child: Container(
-                  height: 200.0,
-                  child: Image.asset('images/logo.png'),
+              Flexible(
+                child: Hero(
+                  tag: 'logo',
+                  child: Container(
+                    height: 200.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
                 ),
               ),
               SizedBox(height: 48.0),
@@ -63,24 +65,25 @@ class RegistrationScreenState extends State<RegistrationScreen> {
               RoundedButton(
                 color: Colors.blueAccent,
                 text: 'Register',
-                onPressed: () async{
+                onPressed: () async {
                   setState(() {
                     showSpinner = true;
                   });
                   try {
                     final newUser = await auth.createUserWithEmailAndPassword(
-                        email: email, password: password);
+                      email: email,
+                      password: password,
+                    );
                     if (newUser != null) {
                       Navigator.pushNamed(context, ChatScreen.id);
                     }
                     setState(() {
                       showSpinner = false;
                     });
-                  }
-                  catch (e) {
+                  } catch (e) {
                     print(e);
                   }
-                  },
+                },
               ),
             ],
           ),
